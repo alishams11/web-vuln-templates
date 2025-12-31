@@ -1,0 +1,13 @@
+id: xss-basic
+name: Reflected XSS (Basic)
+severity: medium
+
+requests:
+  - path: /
+    payloads:
+      q:
+        - "<script>alert(1)</script>"
+
+matchers:
+  - type: body
+    value: "<script>alert(1)</script>"

@@ -1,0 +1,13 @@
+id: sqli-error
+name: SQL Injection (Error Based)
+severity: high
+
+requests:
+  - path: /
+    payloads:
+      id:
+        - "' OR 1=1 --"
+
+matchers:
+  - type: body
+    regex: "(SQL syntax|mysql_fetch|ORA-)"

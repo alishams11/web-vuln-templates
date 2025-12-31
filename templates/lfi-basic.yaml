@@ -1,0 +1,13 @@
+id: lfi-basic
+name: Local File Inclusion
+severity: high
+
+requests:
+  - path: /
+    payloads:
+      file:
+        - "../../etc/passwd"
+
+matchers:
+  - type: body
+    regex: "root:x:0:0:"

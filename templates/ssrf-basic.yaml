@@ -1,0 +1,13 @@
+id: ssrf-basic
+name: SSRF Basic
+severity: high
+
+requests:
+  - path: /
+    payloads:
+      url:
+        - "http://127.0.0.1"
+
+matchers:
+  - type: status
+    value: 200
