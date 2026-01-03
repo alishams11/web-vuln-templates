@@ -45,6 +45,7 @@ Clone the templates repository:
 git clone https://github.com/alishams11/web-vuln-templates.git
 ```
 Run a scan using a specific template:
+
 python3 -m pywvs scan https://example.com \
   -t templates/xss/xss-basic.yaml \
   -o report.json
