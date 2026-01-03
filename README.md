@@ -1,9 +1,27 @@
-# web-vuln-templates
+# Web Vulnerability Templates (WVS)
 
-Official vulnerability templates for **web-vuln-scanner (WVS)**.
+Official **detection templates** for the
+[web-vuln-scanner (WVS)](https://github.com/alishams11/web-vuln-scanner).
 
-This repository contains community-ready, production-safe templates
-used by the WVS engine.
+This repository contains **auditable, production-safe, template-driven
+security detections** designed for real-world
+**Pentest, AppSec, and SOC workflows**.
+
+---
+
+## 🧠 Template-Driven Detection Philosophy
+
+Instead of embedding detection logic directly in code, WVS uses
+**template-driven scanning**, where each template defines:
+
+- What requests are sent
+- What response patterns are evaluated
+- How confident the detection is
+
+This approach allows:
+- Easier tuning and auditing
+- Reduced false positives
+- Independent evolution of detection rules
 
 ---
 
@@ -12,48 +30,86 @@ used by the WVS engine.
 | Category | Template | Description |
 |--------|---------|-------------|
 | XSS | xss-basic | Reflected XSS via query parameter |
-| SQLi | sqli-error-based | Error-based SQL injection |
+| SQLi | sqli-error | Error-based SQL injection |
 | LFI | lfi-basic | Local File Inclusion |
 | SSRF | ssrf-basic | Server-Side Request Forgery |
-| Misconfig | basic-auth | Exposed Basic Auth |
+| Misconfig | auth-misconfig | Exposed HTTP Basic Authentication |
 
 ---
 
 ## 🚀 Usage
 
-Clone the templates:
+Clone the templates repository:
 
 ```bash
 git clone https://github.com/alishams11/web-vuln-templates.git
-
-Run a scan using a template:
+```
+Run a scan using a specific template:
 python3 -m pywvs scan https://example.com \
   -t templates/xss/xss-basic.yaml \
   -o report.json
-'''
-🧠 Confidence Scores
 
-Each template includes a confidence field (0.0–1.0) indicating
-the likelihood of a true positive.
 
-Use .wvs-ignore to suppress known false positives.
+Each finding includes:
 
-##⚠️ Disclaimer
+Severity
 
+Confidence score
+
+Evidence for reporting
+
+---
+
+## 🧠 Confidence Scores
+Each template defines a confidence value (low / medium / high)
+indicating the estimated likelihood of a true positive.
+
+Confidence scores are designed to:
+
+Reduce alert fatigue
+
+Help prioritization
+
+Support SOC and AppSec triage workflows
+
+Use .wvs-ignore to suppress accepted or known findings.
+
+---
+
+## 🧩 Template Structure (Overview)
+Each template follows a standard schema:
+
+Metadata (id, severity, confidence)
+
+One or more HTTP requests
+
+Matchers defining detection logic
+
+📄 Full specification:
+docs/template-spec.md
+
+---
+
+## 🤝 Contributing
+Pull requests are welcome.
+
+When contributing templates, please ensure they are:
+
+Minimal and deterministic
+
+Safe and non-destructive
+
+Clearly described
+
+Aligned with the official template specification
+
+---
+
+## ⚠️ Disclaimer
 Templates are provided for educational and authorized testing only.
-Do not scan systems without permission.
+Do not scan systems without explicit permission.
 
-##🤝 Contributing
+---
 
-Pull requests welcome!
-Please ensure templates are:
-
-minimal
-
-deterministic
-
-safe
-
-well-described
-
-##📜 License
+## 📜 License
+MIT License
