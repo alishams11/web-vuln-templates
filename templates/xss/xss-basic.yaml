@@ -3,11 +3,15 @@ name: Reflected XSS (Basic)
 severity: medium
 
 requests:
-  - path: /
+  - method: GET
+    path: /
     payloads:
       q:
         - "<script>alert(1)</script>"
 
 matchers:
-  - type: body
-    value: "<script>alert(1)</script>"
+  - type: word
+    part: body
+    words:
+      - "<script>alert(1)</script>"
+
